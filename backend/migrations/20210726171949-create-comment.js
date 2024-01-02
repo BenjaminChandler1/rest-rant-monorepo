@@ -1,6 +1,16 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    return queryInterface.addColumn('users', 'password_digest', {
+      type: Sequelize.DataTypes.STRING
+    })
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    return queryInterface.removeColumn('users', 'password_digest')
+  }
+};
+
     await queryInterface.createTable('comments', {
       comment_id: {
         allowNull: false,
@@ -32,8 +42,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
-  },
+  
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('comments');
   }
-};
