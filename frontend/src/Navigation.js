@@ -23,13 +23,31 @@ function Navigation() {
         </>
     )
 
-    if (currentUser) {
-        loginActions = (
-            <li style={{ float: 'right' }}>
-                Logged in as {currentUser.firstName} {currentUser.lastName}
-            </li>
-        )
-    }
+     
+
+if (currentUser) {
+    loginActions = (
+        <li style={{ float: 'right' }}>
+            Logged in as {currentUser.firstName} {currentUser.lastName}
+        </li>
+    )
+}
+
+
+let placeActions = null
+
+if (currentUser?.role === 'admin') {
+placeActions = (
+    <>
+        <a className="btn btn-warning" onClick={editPlace}>
+            Edit
+        </a>
+        <button type="submit" className="btn btn-danger" onClick={deletePlace}>
+            Delete
+        </button>
+    </>
+)
+}
 
     return (
         <nav>
